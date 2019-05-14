@@ -1,5 +1,4 @@
-package com.redpill.perafo.pimovies.ui.main;
-
+package com.redpill.perafo.pimovies.ui.FavoritesFrag;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,18 +10,18 @@ import android.view.ViewGroup;
 
 import com.redpill.perafo.pimovies.R;
 
-public class MainFrag extends Fragment implements View.OnClickListener {
+public class FavoritesFrag extends Fragment implements View.OnClickListener {
 
     public static final String TAG = "MainFrag";
 
-    public static Fragment newInstance(){
-        return new MainFrag();
+    public static Fragment newInstance() {
+        return new FavoritesFrag();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.main_frag, container, false);
+        return inflater.inflate(R.layout.favorites_frag, container, false);
     }
 
     @Override
@@ -32,7 +31,7 @@ public class MainFrag extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
 
         }
     }
