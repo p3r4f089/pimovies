@@ -3,17 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--<include
-        android:id="@+id/card_selector"
-        layout="@layout/card_selector"/>-->
-
-
-    <!-- android:layout_below="@id/card_selector" -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/sv_margin_bottom">
-
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -98,19 +91,8 @@
 
             </LinearLayout>
 
-
-
         </RelativeLayout>
 
-
-
-
-
-
-
     </ScrollView>
-
-
-
 
 </RelativeLayout>

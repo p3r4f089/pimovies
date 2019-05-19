@@ -15,5 +15,13 @@
         <item name="android:layout_marginTop">4dp</item>
     </style>
 
+    <style name="card_selector_title">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+
 
 </resources>

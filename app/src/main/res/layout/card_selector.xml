@@ -1,59 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:layout_marginEnd="@dimen/card_content_margin"
     android:layout_marginStart="@dimen/card_content_margin"
     android:layout_marginTop="@dimen/card_content_margin"
     android:layout_marginBottom="@dimen/card_content_margin">
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/card_popular"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_weight="1"
-        android:layout_marginEnd="30dp">
-
-        <TextView
-            android:text="@string/card_selector_popular"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </android.support.v7.widget.CardView>
+    
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
 
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/card_top_rated"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_weight="1"
-        android:layout_marginEnd="30dp">
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_popular"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="15dp"
+            card_view:cardBackgroundColor="#009688">
 
-        <TextView
-            android:text="@string/card_selector_top_rated"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <TextView
+                android:text="@string/card_selector_popular"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/card_selector_title"/>
 
-    </android.support.v7.widget.CardView>
+        </android.support.v7.widget.CardView>
 
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/card_upcoming"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_weight="1"
-        android:layout_marginEnd="30dp">
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_top_rated"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="15dp"
+            card_view:cardBackgroundColor="#EF5350">
 
-        <TextView
-            android:text="@string/card_selector_upcoming"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <TextView
+                android:text="@string/card_selector_top_rated"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/card_selector_title"/>
 
-    </android.support.v7.widget.CardView>
+        </android.support.v7.widget.CardView>
 
-</LinearLayout>
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_upcoming"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="15dp"
+            card_view:cardBackgroundColor="#039BE5">
+
+            <TextView
+                android:text="@string/card_selector_upcoming"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/card_selector_title"/>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</RelativeLayout>
