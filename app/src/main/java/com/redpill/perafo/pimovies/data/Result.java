@@ -4,7 +4,7 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PopularResult {
+public class Result {
 
     @SerializedName("page")
     @Expose
@@ -17,7 +17,7 @@ public class PopularResult {
     private Integer totalPages;
     @SerializedName("results")
     @Expose
-    private List<PopularDetailsResult> results = null;
+    private List<DetailsResult> results = null;
 
     public Integer getPage() {
         return page;
@@ -43,11 +43,11 @@ public class PopularResult {
         this.totalPages = totalPages;
     }
 
-    public List<PopularDetailsResult> getResults() {
+    public List<DetailsResult> getResults() {
         return results;
     }
 
-    public void setResults(List<PopularDetailsResult> results) {
+    public void setResults(List<DetailsResult> results) {
         this.results = results;
     }
 }

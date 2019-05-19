@@ -7,12 +7,8 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.redpill.perafo.pimovies.R;
-import com.redpill.perafo.pimovies.data.PopularResult;
+import com.redpill.perafo.pimovies.data.Result;
 import com.redpill.perafo.pimovies.services.ApiMovies;
-
-import java.lang.reflect.Type;
-import java.util.Arrays;
-import java.util.List;
 
 
 public class MainInteractor implements MainView.Interactor, ApiMovies.OnApiResponseListener {
@@ -41,7 +37,23 @@ public class MainInteractor implements MainView.Interactor, ApiMovies.OnApiRespo
     public void getPopularMovies() {
         for(int i = 0; i < MOVIES_ROWS; i++){
             Log.d(TAG, "rows movies " + i);
-            api.getPopularMovies(String.valueOf(i + 1));
+            api.getMovies(String.valueOf(i + 1), 0);
+        }
+    }
+
+    @Override
+    public void getTopRatedMovies() {
+        for(int i = 0; i < MOVIES_ROWS; i++){
+            Log.d(TAG, "rows movies " + i);
+            api.getMovies(String.valueOf(i + 1), 1);
+        }
+    }
+
+    @Override
+    public void getUpComingMovies() {
+        for(int i = 0; i < MOVIES_ROWS; i++){
+            Log.d(TAG, "rows movies " + i);
+            api.getMovies(String.valueOf(i + 1), 2);
         }
     }
 
@@ -50,19 +62,17 @@ public class MainInteractor implements MainView.Interactor, ApiMovies.OnApiRespo
         if(statusCode == 200){
             GsonBuilder builder = new GsonBuilder();
             Gson mGson = builder.create();
-
-            switch (mode){
-
+            Result result = mGson.fromJson(data, Result.class);
+            presenter.setMovies(result);
+            /*switch (mode){
                 case 1:
-                    PopularResult popular = mGson.fromJson(data, PopularResult.class);
-                    presenter.setPopularMovies(popular);
+                    presenter.setMovies(popular);
                     break;
                 case 2:
                     break;
                 case 3:
                     break;
-            }
-
+            }*/
 
         }else{
             presenter.setError(context.getString(R.string.api_error_title), context.getString(R.string.api_error));

@@ -24,4 +24,7 @@ public class Config {
     public static final String TV_POPULAR_PATH = "tv/popular";
     public static final String TV_TOPRATED_PATH = "tv/top_rated";
 
+    public static final String SEARCH_PATH = "search/multi";
+
+
 }

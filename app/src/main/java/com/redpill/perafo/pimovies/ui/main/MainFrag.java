@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +15,9 @@ import android.view.ViewGroup;
 
 import com.redpill.perafo.pimovies.R;
 import com.redpill.perafo.pimovies.adapters.MediaAdapter;
-import com.redpill.perafo.pimovies.data.PopularDetailsResult;
-import com.redpill.perafo.pimovies.data.PopularResult;
+import com.redpill.perafo.pimovies.data.Result;
 import com.redpill.perafo.pimovies.utils.AlertsProvider;
 
-import java.util.List;
 import java.util.Objects;
 
 public class MainFrag extends Fragment implements View.OnClickListener, MainView.View {
@@ -33,6 +31,10 @@ public class MainFrag extends Fragment implements View.OnClickListener, MainView
     RecyclerView rv_popular_0;
     RecyclerView rv_popular_1;
     RecyclerView rv_popular_2;
+
+    CardView card_popular;
+    CardView card_top_rated;
+    CardView card_upcoming;
 
     public static Fragment newInstance(){
         return new MainFrag();
@@ -56,6 +58,14 @@ public class MainFrag extends Fragment implements View.OnClickListener, MainView
         rv_popular_1 = view.findViewById(R.id.rv_popular_1);
         rv_popular_2 = view.findViewById(R.id.rv_popular_2);
 
+        card_popular = view.findViewById(R.id.card_popular);
+        card_top_rated = view.findViewById(R.id.card_top_rated);
+        card_upcoming = view.findViewById(R.id.card_upcoming);
+
+        card_popular.setOnClickListener(this);
+        card_top_rated.setOnClickListener(this);
+        card_upcoming.setOnClickListener(this);
+
         RecyclerView.LayoutManager mLayout = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView.LayoutManager mLayout0 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView.LayoutManager mLayout1 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -70,27 +80,30 @@ public class MainFrag extends Fragment implements View.OnClickListener, MainView
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.card_popular:
+                presenter.getPopularMovies();
                 break;
             case R.id.card_top_rated:
+                presenter.getTopRatedMovies();
                 break;
             case R.id.card_upcoming:
+                presenter.getUpComingMovies();
                 break;
         }
     }
 
     @Override
-    public void setPopularMovies(PopularResult popular) {
+    public void setMovies(Result result) {
 
         Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
-            MediaAdapter mediaAdapter = new MediaAdapter(getActivity(), popular.getResults());
+            MediaAdapter mediaAdapter = new MediaAdapter(getActivity(), result.getResults());
 
-            if(popular.getPage() == 1){
+            if(result.getPage() == 1){
                 rv_popular.setAdapter(mediaAdapter);
-            }else if(popular.getPage() == 2){
+            }else if(result.getPage() == 2){
                 rv_popular_0.setAdapter(mediaAdapter);
-            }else if(popular.getPage() == 3){
+            }else if(result.getPage() == 3){
                 rv_popular_1.setAdapter(mediaAdapter);
-            }else if(popular.getPage() == 4){
+            }else if(result.getPage() == 4){
                 rv_popular_2.setAdapter(mediaAdapter);
             }
 

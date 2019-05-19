@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.redpill.perafo.pimovies.Config;
 import com.redpill.perafo.pimovies.R;
-import com.redpill.perafo.pimovies.data.PopularDetailsResult;
+import com.redpill.perafo.pimovies.data.DetailsResult;
 
 import java.util.List;
 
@@ -21,10 +21,10 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ModelsViewHo
 
     private static final String TAG = "MediaAdapter";
 
-    private List<PopularDetailsResult> data;
+    private List<DetailsResult> data;
     private Context context;
 
-    public MediaAdapter(Context context, List<PopularDetailsResult> data) {
+    public MediaAdapter(Context context, List<DetailsResult> data) {
        this.data = data;
        this.context = context;
 
@@ -50,7 +50,7 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ModelsViewHo
 
     @Override
     public void onBindViewHolder(ModelsViewHolder holder, int position) {
-        PopularDetailsResult item = data.get(position);
+        DetailsResult item = data.get(position);
 
         //Log.d(TAG, "item " + item.getTitle());
         String url = getUrlPreviewImage(item.getPosterPath());

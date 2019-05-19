@@ -2,10 +2,8 @@ package com.redpill.perafo.pimovies.ui.main;
 
 import android.content.Context;
 
-import com.redpill.perafo.pimovies.data.PopularDetailsResult;
-import com.redpill.perafo.pimovies.data.PopularResult;
+import com.redpill.perafo.pimovies.data.Result;
 
-import java.util.List;
 
 public class MainPresenter implements MainView.Presenter {
 
@@ -21,8 +19,23 @@ public class MainPresenter implements MainView.Presenter {
 
 
     @Override
-    public void setPopularMovies(PopularResult popular) {
-        view.setPopularMovies(popular);
+    public void setMovies(Result result) {
+        view.setMovies(result);
+    }
+
+    @Override
+    public void getPopularMovies() {
+        interactor.getPopularMovies();
+    }
+
+    @Override
+    public void getTopRatedMovies() {
+        interactor.getTopRatedMovies();
+    }
+
+    @Override
+    public void getUpComingMovies() {
+        interactor.getUpComingMovies();
     }
 
     @Override
