@@ -64,15 +64,6 @@ public class MainInteractor implements MainView.Interactor, ApiMovies.OnApiRespo
             Gson mGson = builder.create();
             Result result = mGson.fromJson(data, Result.class);
             presenter.setMovies(result);
-            /*switch (mode){
-                case 1:
-                    presenter.setMovies(popular);
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-            }*/
 
         }else{
             presenter.setError(context.getString(R.string.api_error_title), context.getString(R.string.api_error));
