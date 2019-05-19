@@ -21,7 +21,7 @@ public class MainPresenter implements MainView.Presenter {
 
 
     @Override
-    public void setPopularMovies(List<PopularDetailsResult> popular) {
+    public void setPopularMovies(PopularResult popular) {
         view.setPopularMovies(popular);
     }
 

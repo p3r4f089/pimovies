@@ -6,8 +6,11 @@
     <dimen name="card_preview_height">130dp</dimen>
     <dimen name="card_content_margin">20dp</dimen>
 
+    <dimen name="row_card_margin_top">30dp</dimen>
+
 
     <!-- main -->
 
     <dimen name="rv_card_margin_top">150dp</dimen>
+    <dimen name="sv_margin_bottom">70dp</dimen>
 </resources>

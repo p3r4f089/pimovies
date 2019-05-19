@@ -20,6 +20,7 @@ public class MainInteractor implements MainView.Interactor, ApiMovies.OnApiRespo
     private static final String TAG = "MainInteractor";
 
     private int LOAD_TIME = 100;
+    private int MOVIES_ROWS = 4;
 
     private MainPresenter presenter;
     private ApiMovies api;
@@ -38,7 +39,10 @@ public class MainInteractor implements MainView.Interactor, ApiMovies.OnApiRespo
 
     @Override
     public void getPopularMovies() {
-        api.getPopularMovies();
+        for(int i = 0; i < MOVIES_ROWS; i++){
+            Log.d(TAG, "rows movies " + i);
+            api.getPopularMovies(String.valueOf(i + 1));
+        }
     }
 
     @Override
@@ -51,7 +55,7 @@ public class MainInteractor implements MainView.Interactor, ApiMovies.OnApiRespo
 
                 case 1:
                     PopularResult popular = mGson.fromJson(data, PopularResult.class);
-                    presenter.setPopularMovies(popular.getResults());
+                    presenter.setPopularMovies(popular);
                     break;
                 case 2:
                     break;

@@ -32,11 +32,12 @@ public class ApiMovies {
         client = new RestClient();
     }
 
-    public void getPopularMovies(){
+    public void getPopularMovies(String page){
         String url = Config.API_HOST + Config.API_VERSION + "/" + Config.MOVIE_POPULAR_PATH;
         mode = 1;
         HttpUrl httpUrl = Objects.requireNonNull(HttpUrl.parse(url)).newBuilder()
                 .addQueryParameter("api_key", Config.MOVIEDB_API_KEY)
+                .addQueryParameter("page", page)
                 .build();
 
         try {

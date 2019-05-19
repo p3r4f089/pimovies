@@ -18,14 +18,14 @@ public interface MainView {
 
     interface View{
 
-        void setPopularMovies(List<PopularDetailsResult> popular);
+        void setPopularMovies(PopularResult popular);
 
         void showMessage(String title, String message);
     }
 
     interface Presenter{
 
-       void setPopularMovies(List<PopularDetailsResult> popular);
+       void setPopularMovies(PopularResult popular);
 
        void setError(String title, String message);
     }

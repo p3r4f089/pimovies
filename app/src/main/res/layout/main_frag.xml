@@ -3,23 +3,114 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/card_selector"/>
+    <!--<include
+        android:id="@+id/card_selector"
+        layout="@layout/card_selector"/>-->
 
 
-    <LinearLayout
+    <!-- android:layout_below="@id/card_selector" -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/rv_card_margin_top"
-        android:orientation="horizontal"
-        android:layout_marginStart="@dimen/card_content_margin"
-        android:layout_marginEnd="@dimen/card_content_margin">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/sv_margin_bottom">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_popular"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="@dimen/card_preview_height"/>
 
-    </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/card_selector"
+                layout="@layout/card_selector"/>
+
+            <LinearLayout
+                android:id="@+id/rv_content_0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_selector"
+                android:layout_marginTop="@dimen/row_card_margin_top"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/card_content_margin"
+                android:layout_marginEnd="@dimen/card_content_margin">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_popular"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/card_preview_height"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/rv_content_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rv_content_0"
+                android:layout_marginTop="@dimen/row_card_margin_top"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/card_content_margin"
+                android:layout_marginEnd="@dimen/card_content_margin">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_popular_0"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/card_preview_height"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/rv_content_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rv_content_1"
+                android:layout_marginTop="@dimen/row_card_margin_top"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/card_content_margin"
+                android:layout_marginEnd="@dimen/card_content_margin">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_popular_1"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/card_preview_height"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/rv_content_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rv_content_2"
+                android:layout_marginTop="@dimen/row_card_margin_top"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/card_content_margin"
+                android:layout_marginEnd="@dimen/card_content_margin">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_popular_2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/card_preview_height"/>
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+    </ScrollView>
+
+
+
 
 </RelativeLayout>
