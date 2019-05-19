@@ -8,4 +8,13 @@
     <string name="card_selector_popular">Popular</string>
     <string name="card_selector_top_rated">Aclamado</string>
     <string name="card_selector_upcoming">Próximo</string>
+
+
+    <!-- alerts -->
+    <string name="ok_btn">Aceptar</string>
+
+
+    <!-- Api errors -->
+    <string name="api_error">Ha ocurrido un error al obtener los datos</string>
+    <string name="api_error_title">Error</string>
 </resources>

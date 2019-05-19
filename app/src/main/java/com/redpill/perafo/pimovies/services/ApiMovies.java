@@ -1,5 +1,6 @@
 package com.redpill.perafo.pimovies.services;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.redpill.perafo.pimovies.Config;
@@ -19,14 +20,21 @@ public class ApiMovies {
     private static final String TAG = "ApiMovies";
 
     private RestClient client;
+    private OnApiResponseListener responseListener;
+    private Context context;
 
-    public ApiMovies() {
+    private int mode;
+
+    public ApiMovies(Context context, OnApiResponseListener responseListener) {
+        this.context = context;
+        this.responseListener = responseListener;
+
         client = new RestClient();
     }
 
     public void getPopularMovies(){
         String url = Config.API_HOST + Config.API_VERSION + "/" + Config.MOVIE_POPULAR_PATH;
-
+        mode = 1;
         HttpUrl httpUrl = Objects.requireNonNull(HttpUrl.parse(url)).newBuilder()
                 .addQueryParameter("api_key", Config.MOVIEDB_API_KEY)
                 .build();
@@ -36,6 +44,7 @@ public class ApiMovies {
                 @Override
                 public void onFailure(@NotNull Call call, @NotNull IOException e) {
                     Log.d(TAG, "Login onFailure " + e.getMessage() + " " + 404);
+                    responseListener.onApiResponse(404, null, mode);
                 }
 
                 @Override
@@ -44,10 +53,15 @@ public class ApiMovies {
                     String result = response.body().string();
                     int code = response.code();
                     Log.d(TAG, "getPopularMovies Response " + code + " " + result );
+                    responseListener.onApiResponse(code, result, mode);
                 }
             });
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public interface OnApiResponseListener{
+        void onApiResponse(int statusCode , String data, int mode);
     }
 }

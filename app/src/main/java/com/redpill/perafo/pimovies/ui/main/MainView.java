@@ -1,5 +1,10 @@
 package com.redpill.perafo.pimovies.ui.main;
 
+import com.redpill.perafo.pimovies.data.PopularDetailsResult;
+import com.redpill.perafo.pimovies.data.PopularResult;
+
+import java.util.List;
+
 public interface MainView {
 
     interface HomeView{
@@ -13,12 +18,16 @@ public interface MainView {
 
     interface View{
 
-        void setPopularMovies();
+        void setPopularMovies(List<PopularDetailsResult> popular);
+
+        void showMessage(String title, String message);
     }
 
     interface Presenter{
 
-       void setPopularMovies();
+       void setPopularMovies(List<PopularDetailsResult> popular);
+
+       void setError(String title, String message);
     }
 
     interface Interactor{

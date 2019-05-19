@@ -2,7 +2,7 @@
 <resources>
 
     <!-- Card Preview-->
-    <dimen name="card_preview_width">130dp</dimen>
+    <dimen name="card_preview_width">100dp</dimen>
     <dimen name="card_preview_height">130dp</dimen>
     <dimen name="card_content_margin">20dp</dimen>
 

@@ -2,8 +2,6 @@ package com.redpill.perafo.pimovies.services;
 
 import android.util.Log;
 
-import com.redpill.perafo.pimovies.Config;
-
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -23,19 +21,12 @@ public class RestClient {
     }
 
     void get(HttpUrl url, Callback callback) throws IOException {
-        //String ACCESS_TOKEN = "Bearer " + Config.MOVIEDB_TOKEN;
         Log.d(TAG, "get url " + url);
         Request request = new Request.Builder()
                 .url(url)
-                //.header("Authorization", ACCESS_TOKEN)
                 .build();
 
         Call call = client.newCall(request);
         call.enqueue(callback);
-
-        /*try (Response response = client.newCall(request).execute()) {
-            assert response.body() != null;
-            return response.body().string();
-        }*/
     }
 }
