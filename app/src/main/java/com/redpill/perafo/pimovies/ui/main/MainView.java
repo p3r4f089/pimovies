@@ -10,4 +10,19 @@ public interface MainView {
 
         void goToFavorites();
     }
+
+    interface View{
+
+        void setPopularMovies();
+    }
+
+    interface Presenter{
+
+       void setPopularMovies();
+    }
+
+    interface Interactor{
+
+        void getPopularMovies();
+    }
 }

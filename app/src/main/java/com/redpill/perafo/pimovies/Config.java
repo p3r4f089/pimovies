@@ -2,10 +2,16 @@ package com.redpill.perafo.pimovies;
 
 public class Config {
 
-    public static final String MOVIEDB_TOKEN = BuildConfig.MovieDbToken;
     public static final int SPLASH_TIME = 3000;
 
     /* API */
+    public static final String MOVIEDB_TOKEN = BuildConfig.MovieDbToken;
+    public static final String MOVIEDB_API_KEY = BuildConfig.MovieDbApiKey;
+
+    public static final String IMAGES_PATH = "https://image.tmdb.org/t/p/";
+    public static final String IMAGES_SIZE_ORIGINAL = "original/";
+    public static final String IMAGES_SIZE_W500 = "w500/";
+
     public static final String API_HOST = "https://api.themoviedb.org/";
     public static final String API_VERSION ="3";
 

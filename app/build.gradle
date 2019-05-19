@@ -19,6 +19,7 @@ android {
         }
         buildTypes.each {
             it.buildConfigField 'String', 'MovieDbToken', MovieDbToken
+            it.buildConfigField 'String', 'MovieDbApiKey', MovieDbApiKey
         }
     }
     compileOptions {

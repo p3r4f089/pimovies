@@ -11,9 +11,11 @@ import android.view.ViewGroup;
 
 import com.redpill.perafo.pimovies.R;
 
-public class MainFrag extends Fragment implements View.OnClickListener {
+public class MainFrag extends Fragment implements View.OnClickListener, MainView.View {
 
     public static final String TAG = "MainFrag";
+
+    MainPresenter presenter;
 
     public static Fragment newInstance(){
         return new MainFrag();
@@ -28,6 +30,8 @@ public class MainFrag extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        presenter = new MainPresenter(getActivity(), this);
     }
 
     @Override
@@ -35,5 +39,10 @@ public class MainFrag extends Fragment implements View.OnClickListener {
         switch (view.getId()){
 
         }
+    }
+
+    @Override
+    public void setPopularMovies() {
+
     }
 }
