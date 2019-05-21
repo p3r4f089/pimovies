@@ -16,6 +16,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+                variant.outputs.all { output ->
+                    outputFileName = new File("piMovies-" + variant.versionName + ".apk")
+                }
+            }
         }
         buildTypes.each {
             it.buildConfigField 'String', 'MovieDbToken', MovieDbToken
