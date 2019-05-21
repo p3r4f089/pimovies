@@ -19,7 +19,7 @@ import com.redpill.perafo.pimovies.utils.AlertsProvider;
 
 import java.util.Objects;
 
-public class SearchFrag  extends Fragment implements com.redpill.perafo.pimovies.ui.search.SearchView.View {
+public class SearchFrag extends Fragment implements com.redpill.perafo.pimovies.ui.search.SearchView.View {
 
     public static final String TAG = "MainFrag";
 
@@ -48,6 +48,8 @@ public class SearchFrag  extends Fragment implements com.redpill.perafo.pimovies
 
         searchView = view.findViewById(R.id.search_view);
         rv_search = view.findViewById(R.id.rv_search);
+
+        searchView.requestFocus();
 
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 4);
 
@@ -82,6 +84,8 @@ public class SearchFrag  extends Fragment implements com.redpill.perafo.pimovies
 
     @Override
     public void setError(String title, String message) {
-        alertsProvider.showBasicAlert(title, message);
+        Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
+            alertsProvider.showBasicAlert(title, message);
+        });
     }
 }

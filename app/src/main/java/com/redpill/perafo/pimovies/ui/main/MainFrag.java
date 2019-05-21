@@ -114,6 +114,9 @@ public class MainFrag extends Fragment implements View.OnClickListener, MainView
 
     @Override
     public void showMessage(String title, String message) {
-        alertsProvider.showBasicAlert(title, message);
+        Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
+            alertsProvider.showBasicAlert(title, message);
+        });
+
     }
 }

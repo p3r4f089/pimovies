@@ -1,6 +1,7 @@
 package com.redpill.perafo.pimovies.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.redpill.perafo.pimovies.Config;
 import com.redpill.perafo.pimovies.R;
 import com.redpill.perafo.pimovies.data.DetailsResult;
+import com.redpill.perafo.pimovies.ui.main.MainAct;
 
 import java.util.List;
 
@@ -27,17 +29,25 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ModelsViewHo
     public MediaAdapter(Context context, List<DetailsResult> data) {
        this.data = data;
        this.context = context;
-
-       Log.d(TAG, "DATA SIZE " + data.size());
     }
 
     class ModelsViewHolder extends RecyclerView.ViewHolder {
 
         ImageView img_preview;
+        CardView card_popular;
 
         ModelsViewHolder(View v) {
             super(v);
             img_preview = v.findViewById(R.id.card_preview);
+            card_popular = v.findViewById(R.id.card_popular);
+
+            card_popular.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d(TAG, "Click on id " + data.get(getAdapterPosition()).getId());
+                    ((MainAct) context).goToDetails(data.get(getAdapterPosition()).getId());
+                }
+            });
         }
     }
 
@@ -52,9 +62,8 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ModelsViewHo
     public void onBindViewHolder(ModelsViewHolder holder, int position) {
         DetailsResult item = data.get(position);
 
-        //Log.d(TAG, "item " + item.getTitle());
         String url = getUrlPreviewImage(item.getPosterPath());
-        //Log.d(TAG, "Preview Url " + url);
+
         Glide.with(context)
                 .load(url)
                 .placeholder(R.drawable.pimovies_logo)

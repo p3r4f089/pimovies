@@ -11,6 +11,8 @@ public interface MainView {
         void goToSearch();
 
         void goToFavorites();
+
+        void goToDetails(int id);
     }
 
     interface View{

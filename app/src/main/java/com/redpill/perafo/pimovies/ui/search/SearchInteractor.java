@@ -27,7 +27,7 @@ public class SearchInteractor implements SearchView.Interactor, ApiMovies.OnApiR
     }
 
     @Override
-    public void onApiResponse(int statusCode, String data, int mode) {
+    public void onApiResponse(int statusCode, String data) {
         if(statusCode == 200){
             GsonBuilder builder = new GsonBuilder();
             Gson mGson = builder.create();

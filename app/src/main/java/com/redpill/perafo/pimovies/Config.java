@@ -26,5 +26,8 @@ public class Config {
 
     public static final String SEARCH_PATH = "search/multi";
 
+    public static final String VIDEO_PATH = "/videos";
+    public static final String VIDEO_MOVIE_PATH = "/movie";
+    public static final String VIDEO_TV_PATH = "/tv";
 
 }

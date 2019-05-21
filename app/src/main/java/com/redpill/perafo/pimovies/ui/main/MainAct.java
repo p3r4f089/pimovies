@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import com.redpill.perafo.pimovies.R;
 import com.redpill.perafo.pimovies.ui.FavoritesFrag.FavoritesFrag;
+import com.redpill.perafo.pimovies.ui.details.DetailsFrag;
 import com.redpill.perafo.pimovies.ui.search.SearchFrag;
 
 public class MainAct extends AppCompatActivity implements
@@ -64,6 +65,13 @@ public class MainAct extends AppCompatActivity implements
     public void goToFavorites() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, FavoritesFrag.newInstance(), "FavoritesFragment")
+                .commit();
+    }
+
+    @Override
+    public void goToDetails(int id) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, DetailsFrag.newInstance(id), "DetailsFragment")
                 .commit();
     }
 }

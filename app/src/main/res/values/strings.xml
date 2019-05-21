@@ -15,6 +15,17 @@
 
 
     <!-- Api errors -->
-    <string name="api_error">Ha ocurrido un error al obtener los datos</string>
+    <string name="api_error">Ha ocurrido un error al obtener los datos, revisa tu conexión a Internet e intenta de nuevo</string>
     <string name="api_error_title">Error</string>
+
+
+    <!-- details -->
+
+    <string name="go_back">Atrás</string>
+    <string name="default_text">Avengers: Endgame</string>
+    <string name="default_like_count">0</string>
+    <string name="default_description">After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos.</string>
+    
+    <string name="original_language">Lenguaje Original</string>
+    <string name="release_date">Fecha de lanzamiento</string>
 </resources>
