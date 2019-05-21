@@ -12,7 +12,7 @@ public interface MainView {
 
         void goToFavorites();
 
-        void goToDetails(int id);
+        void goToDetails(int id, String mediaType);
     }
 
     interface View{

@@ -48,6 +48,10 @@ public class DetailsResult {
     @SerializedName("release_date")
     @Expose
     private String releaseDate;
+    @SerializedName("media_type")
+    @Expose
+    private String mediaType;
+
 
     public Integer getVoteCount() {
         return voteCount;
@@ -159,5 +163,9 @@ public class DetailsResult {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public String getMediaType() {
+        return mediaType;
     }
 }

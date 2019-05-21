@@ -69,9 +69,9 @@ public class MainAct extends AppCompatActivity implements
     }
 
     @Override
-    public void goToDetails(int id) {
+    public void goToDetails(int id, String mediaType) {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, DetailsFrag.newInstance(id), "DetailsFragment")
+                .replace(R.id.container, DetailsFrag.newInstance(id, mediaType), "DetailsFragment").addToBackStack("DetailsFragment")
                 .commit();
     }
 }

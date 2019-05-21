@@ -9,7 +9,7 @@ public class SearchPresenter implements SearchView.Presenter {
     private SearchView.View view;
     private SearchInteractor interactor;
 
-    public SearchPresenter(Context context, SearchView.View view) {
+    SearchPresenter(Context context, SearchView.View view) {
         this.view = view;
 
         interactor = new SearchInteractor(context, this);

@@ -8,17 +8,36 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.redpill.perafo.pimovies.R;
+import com.redpill.perafo.pimovies.data.MediaDetails;
+import com.redpill.perafo.pimovies.ui.main.MainAct;
+import com.redpill.perafo.pimovies.utils.AlertsProvider;
 
-public class DetailsFrag extends Fragment {
+import java.util.Objects;
+
+public class DetailsFrag extends Fragment implements View.OnClickListener, DetailsView.View {
 
     public static final String TAG = "DetailsPresenter";
 
-    public static Fragment newInstance(int id) {
+    DetailsPresenter presenter;
+    AlertsProvider alertsProvider;
+
+    TextView details_back;
+    TextView details_title;
+    TextView details_vote_count;
+    TextView details_vote_average;
+    TextView details_popularity;
+    TextView details_original_language;
+    TextView details_release_date;
+    TextView details_overview;
+
+    public static Fragment newInstance(int id, String mediaType) {
         DetailsFrag detailsFrag = new DetailsFrag();
         Bundle bundle = new Bundle();
         bundle.putInt("id", id);
+        bundle.putString("mediaType", mediaType);
         detailsFrag.setArguments(bundle);
         return detailsFrag;
     }
@@ -36,7 +55,72 @@ public class DetailsFrag extends Fragment {
 
         assert getArguments() != null;
         int id = getArguments().getInt("id");
+        String mediaType = getArguments().getString("type");
 
         Log.d(TAG, "ID DETAILS "+ id);
+
+        presenter = new DetailsPresenter(getActivity(), this);
+
+        presenter.getDetails(mediaType, id);
+
+        alertsProvider = new AlertsProvider(getActivity());
+
+        details_back = view.findViewById(R.id.details_back);
+        details_title = view.findViewById(R.id.details_title);
+        details_vote_count = view.findViewById(R.id.details_vote_count);
+        details_vote_average = view.findViewById(R.id.details_vote_average);
+        details_popularity = view.findViewById(R.id.details_popularity);
+        details_original_language = view.findViewById(R.id.details_original_language);
+        details_release_date = view.findViewById(R.id.details_release_date);
+        details_overview = view.findViewById(R.id.details_overview);
+
+        details_back.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.details_back) {
+            ((MainAct) Objects.requireNonNull(getActivity())).goToMain();
+        }
+    }
+
+    @Override
+    public void setDetails(MediaDetails mediaDetails) {
+
+        Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
+
+            String title = mediaDetails.getTitle();
+            String voteCount = String.valueOf(mediaDetails.getVoteCount());
+            String voteAverage = String.valueOf(mediaDetails.getVoteAverage());
+            String popularity = String.valueOf(mediaDetails.getPopularity());
+            String language = Objects.requireNonNull(getActivity()).getString(R.string.original_language) + " : " +  mediaDetails.getOriginalLanguage();
+            String date = Objects.requireNonNull(getActivity().getString(R.string.release_date) + " : " + mediaDetails.getReleaseDate());
+            String overview = mediaDetails.getOverview();
+
+            Log.d(TAG, "title " + title);
+            Log.d(TAG, "voteCount " + voteCount);
+            Log.d(TAG, "voteAverage " + voteAverage);
+            Log.d(TAG, "popularity " + popularity);
+            Log.d(TAG, "overview " + overview);
+            Log.d(TAG, "language " + language);
+            Log.d(TAG, "date " + date);
+
+            details_title.setText(title);
+            details_vote_count.setText(voteCount);
+            details_vote_average.setText(voteAverage);
+            details_popularity.setText(popularity);
+            details_original_language.setText(language);
+            details_release_date.setText(date);
+            details_overview.setText(overview);
+        });
+    }
+
+
+    @Override
+    public void setError(String title, String message) {
+        Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
+            alertsProvider.showBasicAlert(title, message);
+        });
     }
 }

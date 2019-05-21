@@ -45,7 +45,11 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ModelsViewHo
                 @Override
                 public void onClick(View view) {
                     Log.d(TAG, "Click on id " + data.get(getAdapterPosition()).getId());
-                    ((MainAct) context).goToDetails(data.get(getAdapterPosition()).getId());
+
+                    int id =  data.get(getAdapterPosition()).getId();
+                    String mediaType = data.get(getAdapterPosition()).getMediaType();
+                    Log.d(TAG, "MEDIA TYPE " + mediaType);
+                    ((MainAct) context).goToDetails(id, mediaType);
                 }
             });
         }

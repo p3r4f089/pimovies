@@ -88,9 +88,10 @@ public class ApiMovies {
     }
 
     public void getMoviesDetails(String movieId){
-        String url = Config.API_HOST + Config.API_VERSION + "/" + Config.MOVIE_PATH;
+        String url = Config.API_HOST + Config.API_VERSION + "/" + Config.MOVIE_PATH + "/" + movieId;
         HttpUrl httpUrl = Objects.requireNonNull(HttpUrl.parse(url)).newBuilder()
-                .addQueryParameter("movie_id", movieId)
+                .addQueryParameter("api_key", Config.MOVIEDB_API_KEY)
+                //.addQueryParameter("movie_id", movieId)
                 .build();
 
         sendRequest(httpUrl);
@@ -98,9 +99,10 @@ public class ApiMovies {
     }
 
     public void getTvDetails(String tvId){
-        String url = Config.API_HOST + Config.API_VERSION + "/" + Config.MOVIE_PATH;
+        String url = Config.API_HOST + Config.API_VERSION + "/" + Config.MOVIE_PATH + "/" + tvId;
         HttpUrl httpUrl = Objects.requireNonNull(HttpUrl.parse(url)).newBuilder()
-                .addQueryParameter("tv_id", tvId)
+                .addQueryParameter("api_key", Config.MOVIEDB_API_KEY)
+                //.addQueryParameter("tv_id", tvId)
                 .build();
 
         sendRequest(httpUrl);

@@ -10,7 +10,7 @@ import com.redpill.perafo.pimovies.services.ApiMovies;
 
 public class SearchInteractor implements SearchView.Interactor, ApiMovies.OnApiResponseListener {
 
-    private  SearchPresenter presenter;
+    private SearchPresenter presenter;
     private ApiMovies api;
     private Context context;
 
