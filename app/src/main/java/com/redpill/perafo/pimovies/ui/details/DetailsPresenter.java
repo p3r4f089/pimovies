@@ -21,6 +21,11 @@ public class DetailsPresenter implements DetailsView.Presenter{
     }
 
     @Override
+    public void setVideo(String id) {
+        view.setVideo(id);
+    }
+
+    @Override
     public void getDetails(String type, int id) {
         interactor.getDetails(type, id);
     }

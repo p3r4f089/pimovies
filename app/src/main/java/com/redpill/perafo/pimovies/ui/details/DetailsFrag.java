@@ -10,6 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+
+import com.pierfrancescosoffritti.youtubeplayer.player.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayer;
+import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayerInitListener;
+import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayerView;
 import com.redpill.perafo.pimovies.R;
 import com.redpill.perafo.pimovies.data.MediaDetails;
 import com.redpill.perafo.pimovies.ui.main.MainAct;
@@ -21,6 +26,7 @@ public class DetailsFrag extends Fragment implements View.OnClickListener, Detai
 
     public static final String TAG = "DetailsPresenter";
 
+    YouTubePlayerView youTubePlayerView;
     DetailsPresenter presenter;
     AlertsProvider alertsProvider;
 
@@ -55,9 +61,9 @@ public class DetailsFrag extends Fragment implements View.OnClickListener, Detai
 
         assert getArguments() != null;
         int id = getArguments().getInt("id");
-        String mediaType = getArguments().getString("type");
+        String mediaType = getArguments().getString("mediaType");
 
-        Log.d(TAG, "ID DETAILS "+ id);
+        Log.d(TAG, "ID DETAILS "+ id + " MEDIA TYPE "+ mediaType);
 
         presenter = new DetailsPresenter(getActivity(), this);
 
@@ -73,6 +79,8 @@ public class DetailsFrag extends Fragment implements View.OnClickListener, Detai
         details_original_language = view.findViewById(R.id.details_original_language);
         details_release_date = view.findViewById(R.id.details_release_date);
         details_overview = view.findViewById(R.id.details_overview);
+
+        youTubePlayerView = view.findViewById(R.id.youtube_player_view);
 
         details_back.setOnClickListener(this);
 
@@ -116,11 +124,31 @@ public class DetailsFrag extends Fragment implements View.OnClickListener, Detai
         });
     }
 
+    @Override
+    public void setVideo(String id) {
+        Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
+
+            youTubePlayerView.initialize(initializedYouTubePlayer -> initializedYouTubePlayer.addListener(new AbstractYouTubePlayerListener() {
+                @Override
+                public void onReady() {
+                    initializedYouTubePlayer.loadVideo(id, 0);
+                }
+            }), true);
+
+        });
+    }
+
 
     @Override
     public void setError(String title, String message) {
         Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
             alertsProvider.showBasicAlert(title, message);
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        youTubePlayerView.release();
     }
 }

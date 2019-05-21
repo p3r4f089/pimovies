@@ -1,115 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_marginStart="30dp"
     android:layout_marginEnd="30dp">
 
-    <TextView
-        android:id="@+id/details_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/go_back"
-        android:layout_marginStart="15dp"
-        style="@style/details_title"/>
 
 
-    <TextView
-        android:id="@+id/details_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/empty_text"
-        android:layout_gravity="center"
-        style="@style/details_title"/>
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/sv_margin_bottom">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            >
+            android:orientation="vertical">
 
-            <TableLayout
+            <TextView
+                android:id="@+id/details_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/go_back"
+                android:layout_marginStart="15dp"
+                style="@style/details_title"/>
+
+
+            <TextView
+                android:id="@+id/details_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/empty_text"
+                android:layout_gravity="center"
+                style="@style/details_title"/>
+
+
+
+            <com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayerView
+                android:id="@+id/youtube_player_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TableRow
-                    android:layout_gravity="center">
-
-                    <ImageView
-                        android:layout_weight="0.1"
-                        android:src="@drawable/ic_like"
-                        android:contentDescription="@string/app_name" />
-
-                    <TextView
-                        android:id="@+id/details_vote_count"
-                        android:layout_weight="0.2"
-                        android:text="@string/default_like_count"
-                        />
-
-                    <ImageView
-                        android:layout_weight="0.1"
-                        android:src="@drawable/ic_grade"
-                        android:contentDescription="@string/app_name"/>
-
-                    <TextView
-                        android:id="@+id/details_vote_average"
-                        android:layout_weight="0.2"
-                        android:text="@string/default_like_count"
-                        />
-
-                    <ImageView
-                        android:layout_weight="0.1"
-                        android:src="@drawable/ic_trending_up"
-                        android:contentDescription="@string/app_name"/>
-
-                    <TextView
-                        android:id="@+id/details_popularity"
-                        android:layout_weight="0.2"
-                        android:text="@string/default_like_count"
-                        />
+                android:layout_height="wrap_content"/>
 
 
-                </TableRow>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                >
 
-            </TableLayout>
-            
-            
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TableRow
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:layout_weight="0.1"
+                            android:src="@drawable/ic_like"
+                            android:contentDescription="@string/app_name" />
+
+                        <TextView
+                            android:id="@+id/details_vote_count"
+                            android:layout_weight="0.2"
+                            android:text="@string/default_like_count"
+                            />
+
+                        <ImageView
+                            android:layout_weight="0.1"
+                            android:src="@drawable/ic_grade"
+                            android:contentDescription="@string/app_name"/>
+
+                        <TextView
+                            android:id="@+id/details_vote_average"
+                            android:layout_weight="0.2"
+                            android:text="@string/default_like_count"
+                            />
+
+                        <ImageView
+                            android:layout_weight="0.1"
+                            android:src="@drawable/ic_trending_up"
+                            android:contentDescription="@string/app_name"/>
+
+                        <TextView
+                            android:id="@+id/details_popularity"
+                            android:layout_weight="0.2"
+                            android:text="@string/default_like_count"
+                            />
+
+
+                    </TableRow>
+
+                </TableLayout>
+
+
+            </LinearLayout>
+
+
+
+            <TextView
+                android:id="@+id/details_original_language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/original_language"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                style="@style/details_text"/>
+
+            <TextView
+                android:id="@+id/details_release_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/release_date"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                style="@style/details_text"/>
+
+
+            <TextView
+                android:id="@+id/details_overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/empty_text"
+                style="@style/details_text"/>
+
+
         </LinearLayout>
 
+    </ScrollView>
 
-
-    <TextView
-        android:id="@+id/details_original_language"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/original_language"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        style="@style/details_text"/>
-
-    <TextView
-        android:id="@+id/details_release_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/release_date"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
-        style="@style/details_text"/>
-
-
-    <TextView
-        android:id="@+id/details_overview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/empty_text"
-        style="@style/details_text"/>
-
-</LinearLayout>
+</RelativeLayout>

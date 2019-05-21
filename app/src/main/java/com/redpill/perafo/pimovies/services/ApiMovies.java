@@ -22,6 +22,7 @@ public class ApiMovies {
     private RestClient client;
     private OnApiResponseListener responseListener;
     private Context context;
+    private int mode;
 
     public ApiMovies(Context context, OnApiResponseListener responseListener) {
         this.context = context;
@@ -36,7 +37,7 @@ public class ApiMovies {
                 @Override
                 public void onFailure(@NotNull Call call, @NotNull IOException e) {
                     Log.d(TAG, "Login onFailure " + e.getMessage() + " " + 404);
-                    responseListener.onApiResponse(404, null);
+                    responseListener.onApiResponse(404, null, mode);
                 }
 
                 @Override
@@ -45,7 +46,7 @@ public class ApiMovies {
                     String result = response.body().string();
                     int code = response.code();
                     Log.d(TAG, "getPopularMovies Response " + code + " " + result );
-                    responseListener.onApiResponse(code, result);
+                    responseListener.onApiResponse(code, result, mode);
                 }
             });
         } catch (IOException e) {
@@ -54,6 +55,8 @@ public class ApiMovies {
     }
 
     public void getMovies(String page, int type){
+
+        mode = 0;
 
         String url = "";
 
@@ -76,7 +79,7 @@ public class ApiMovies {
 
 
     public void search(String query){
-
+        mode = 0;
         String url = Config.API_HOST + Config.API_VERSION + "/" + Config.SEARCH_PATH;
         HttpUrl httpUrl = Objects.requireNonNull(HttpUrl.parse(url)).newBuilder()
                 .addQueryParameter("api_key", Config.MOVIEDB_API_KEY)
@@ -88,10 +91,10 @@ public class ApiMovies {
     }
 
     public void getMoviesDetails(String movieId){
+        mode = 0;
         String url = Config.API_HOST + Config.API_VERSION + "/" + Config.MOVIE_PATH + "/" + movieId;
         HttpUrl httpUrl = Objects.requireNonNull(HttpUrl.parse(url)).newBuilder()
                 .addQueryParameter("api_key", Config.MOVIEDB_API_KEY)
-                //.addQueryParameter("movie_id", movieId)
                 .build();
 
         sendRequest(httpUrl);
@@ -99,17 +102,38 @@ public class ApiMovies {
     }
 
     public void getTvDetails(String tvId){
-        String url = Config.API_HOST + Config.API_VERSION + "/" + Config.MOVIE_PATH + "/" + tvId;
+        mode = 0;
+        String url = Config.API_HOST + Config.API_VERSION + "/" + Config.TV_PATH + "/" + tvId;
         HttpUrl httpUrl = Objects.requireNonNull(HttpUrl.parse(url)).newBuilder()
                 .addQueryParameter("api_key", Config.MOVIEDB_API_KEY)
-                //.addQueryParameter("tv_id", tvId)
                 .build();
 
         sendRequest(httpUrl);
 
     }
 
+    public void getMovieVideos(String movieId){
+        mode = 1;
+        String url = Config.API_HOST + Config.API_VERSION + "/" + Config.MOVIE_PATH +  "/" + movieId + Config.VIDEO_PATH ;
+        HttpUrl httpUrl = Objects.requireNonNull(HttpUrl.parse(url)).newBuilder()
+                .addQueryParameter("api_key", Config.MOVIEDB_API_KEY)
+                .build();
+
+        sendRequest(httpUrl);
+
+    }
+
+    public void getTvVideos(String tvId){
+        mode = 1;
+        String url = Config.API_HOST + Config.API_VERSION + "/" +  Config.TV_PATH + "/" + tvId + Config.VIDEO_PATH;
+        HttpUrl httpUrl = Objects.requireNonNull(HttpUrl.parse(url)).newBuilder()
+                .addQueryParameter("api_key", Config.MOVIEDB_API_KEY)
+                .build();
+
+        sendRequest(httpUrl);
+    }
+
     public interface OnApiResponseListener{
-        void onApiResponse(int statusCode , String data);
+        void onApiResponse(int statusCode , String data, int mode);
     }
 }

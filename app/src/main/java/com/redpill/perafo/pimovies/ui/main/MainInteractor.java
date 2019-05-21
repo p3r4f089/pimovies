@@ -58,7 +58,7 @@ public class MainInteractor implements MainView.Interactor, ApiMovies.OnApiRespo
     }
 
     @Override
-    public void onApiResponse(int statusCode, String data) {
+    public void onApiResponse(int statusCode, String data, int mode) {
         if(statusCode == 200){
             GsonBuilder builder = new GsonBuilder();
             Gson mGson = builder.create();

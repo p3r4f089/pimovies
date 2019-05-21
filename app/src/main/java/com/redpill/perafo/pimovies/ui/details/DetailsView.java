@@ -9,6 +9,8 @@ public interface DetailsView {
 
         void setDetails(MediaDetails mediaDetails);
 
+        void setVideo(String id);
+
         void setError(String title, String message);
     }
 
@@ -16,6 +18,8 @@ public interface DetailsView {
     interface Presenter{
 
         void setDetails(MediaDetails mediaDetails);
+
+        void setVideo(String id);
 
         void getDetails(String type, int id);
 
